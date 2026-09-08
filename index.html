@@ -157,6 +157,13 @@ p{margin:0 0 1rem}
 .slot__k{font-family:var(--mono);font-size:.68rem;color:var(--teal);letter-spacing:.06em;text-transform:uppercase}
 .slot__d{font-family:var(--mono);font-size:.72rem;color:var(--dim);line-height:1.5}
 .slot__await{position:absolute;top:1.1rem;left:1.1rem;z-index:1;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--dim);opacity:.85}
+.slot--filled{border-style:solid;padding:0;justify-content:flex-end}
+.slot--filled::before{display:none}
+.slot--filled img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.slot--filled .slot__cap{position:relative;z-index:1;padding:1.1rem;background:linear-gradient(transparent,rgba(0,0,0,.72));display:flex;flex-direction:column;gap:.3rem}
+.slot--filled .slot__k{color:#fff}
+.slot--filled .slot__d{color:rgba(255,255,255,.82)}
+.slot--filled .slot__await{display:none}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
 @media (max-width:760px){.grid3{grid-template-columns:1fr}}
 
@@ -415,30 +422,38 @@ p{margin:0 0 1rem}
           <div class="case__row"><span>Original NOS price</span><span>$130 each</span></div>
         </div>
       </div>
-      <!-- SWAP: "Classic Car Context Shot" — finished knob installed in Jaime's car -->
-      <div class="slot" aria-label="Photo placeholder">
-        <span class="slot__await">AWAITING PHOTO</span>
-        <span class="slot__k">PHOTO SLOT — 4:3</span>
-        <span class="slot__d">Finished knob installed in the actual car. Warm light, real dash, no studio.</span>
+      <!-- Classic car context shot -->
+      <div class="slot slot--filled" aria-label="Finished knob installed in a classic car dash">
+        <img src="assets/work-classic-car.jpg" alt="Finished replica knob installed in a classic car dashboard">
+        <div class="slot__cap">
+          <span class="slot__k">In the car</span>
+          <span class="slot__d">Finished knob installed. Warm light, real dash, no studio.</span>
+        </div>
       </div>
     </div>
 
     <div class="grid3">
-      <!-- SWAP: the three "Dead End To Solution" shots -->
-      <div class="slot" aria-label="Photo placeholder">
-        <span class="slot__await">AWAITING PHOTO</span>
-        <span class="slot__k">SHOT A</span>
-        <span class="slot__d">The broken part alone on the bench. Unstaged. Let it look sad.</span>
+      <!-- Dead End To Solution A/B/C -->
+      <div class="slot slot--filled" aria-label="Broken part alone on the bench">
+        <img src="assets/work-shot-a.jpg" alt="Broken part alone on a workbench">
+        <div class="slot__cap">
+          <span class="slot__k">Shot A — Dead end</span>
+          <span class="slot__d">The broken part alone on the bench. Unstaged.</span>
+        </div>
       </div>
-      <div class="slot" aria-label="Photo placeholder">
-        <span class="slot__await">AWAITING PHOTO</span>
-        <span class="slot__k">SHOT B</span>
-        <span class="slot__d">Same part next to a phone showing the “can you make this?” text.</span>
+      <div class="slot slot--filled" aria-label="Broken part next to a can you make this text">
+        <img src="assets/work-shot-b.jpg" alt="Broken part next to a phone text asking can you make this">
+        <div class="slot__cap">
+          <span class="slot__k">Shot B — The ask</span>
+          <span class="slot__d">Same part next to the “can you make this?” text.</span>
+        </div>
       </div>
-      <div class="slot" aria-label="Photo placeholder">
-        <span class="slot__await">AWAITING PHOTO</span>
-        <span class="slot__k">SHOT C</span>
-        <span class="slot__d">Finished replica beside the original break, side by side.</span>
+      <div class="slot slot--filled" aria-label="Finished replica beside the original break">
+        <img src="assets/work-shot-c.jpg" alt="Finished replica beside the original broken part">
+        <div class="slot__cap">
+          <span class="slot__k">Shot C — Solution</span>
+          <span class="slot__d">Finished replica beside the original break.</span>
+        </div>
       </div>
     </div>
   </div>
