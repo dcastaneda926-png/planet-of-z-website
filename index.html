@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planet Of Z 3D — Ideas Printed Into Reality</title>
+<meta name="description" content="Send a photo of a broken or discontinued part. We design it, print it, and ship it to you. No file needed, no technical knowledge required.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0d0c0a;
+  --bg-warm:#15130f;
+  --surface:#1a1714;
+  --line:#2b2621;
+  --ink:#f5f1ea;
+  --muted:#b8ad9d;
+  --dim:#7a7165;
+  --red:#e03a00;
+  --teal:#00bfcc;
+  --gold:#d4a030;
+
+  --display:"Fraunces",Georgia,serif;
+  --body:"Inter",system-ui,sans-serif;
+  --mono:"DM Mono",ui-monospace,monospace;
+  --numeral:"Bebas Neue",Impact,sans-serif;
+
+  --pad:clamp(1.25rem,5vw,3rem);
+  --max:1140px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
+.band{padding-block:clamp(4rem,9vw,7rem)}
+.band--warm{background:var(--bg-warm)}
+
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.08;letter-spacing:-.015em;margin:0}
+h2{font-size:clamp(2rem,4.4vw,3.1rem)}
+h3{font-size:1.35rem;line-height:1.25}
+p{margin:0 0 1rem}
+.lede{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--muted);max-width:56ch}
+
+/* ---------- rule bar ---------- */
+.rule{height:3px;background:linear-gradient(90deg,var(--red) 0%,var(--red) 22%,var(--teal) 55%,var(--gold) 100%)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:40;background:rgba(13,12,10,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav__inner{max-width:var(--max);margin:0 auto;padding:.85rem var(--pad);display:flex;align-items:center;gap:1.5rem}
+.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;margin-right:auto}
+.brand__mark{width:38px;height:38px;flex:none;border-radius:50%;object-fit:cover;background:#0d0c0a}
+.brand__name{font-family:var(--display);font-size:1.05rem;letter-spacing:-.01em;line-height:1}
+.brand__name em{font-style:normal;color:var(--teal)}
+.brand__tag{display:block;font-family:var(--mono);font-size:.58rem;color:var(--dim);letter-spacing:.14em;margin-top:.25rem}
+.nav__links{display:flex;gap:1.6rem;font-size:.9rem}
+.nav__links a{text-decoration:none;color:var(--muted)}
+.nav__links a:hover{color:var(--ink)}
+@media (max-width:820px){.nav__links{display:none}}
+
+.btn{
+  display:inline-block;font-family:var(--body);font-size:.92rem;font-weight:500;
+  padding:.7rem 1.3rem;border-radius:2px;text-decoration:none;border:1px solid transparent;cursor:pointer;
+}
+.btn--go{background:var(--teal);color:#06201f}
+.btn--go:hover{background:#31d4de}
+.btn--ghost{border-color:var(--line);color:var(--ink);background:none}
+.btn--ghost:hover{border-color:var(--muted)}
+.btn--lg{padding:.95rem 1.9rem;font-size:1rem}
+
+/* ---------- hero ---------- */
+.hero{padding-top:clamp(3rem,7vw,5.5rem);padding-bottom:clamp(3rem,6vw,4.5rem)}
+.hero__status{
+  display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
+  font-size:.72rem;letter-spacing:.08em;color:var(--muted);margin-bottom:1.6rem;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,191,204,.5)}50%{opacity:.65;box-shadow:0 0 0 6px rgba(0,191,204,0)}}
+.hero h1{font-size:clamp(2.5rem,6.4vw,4.4rem);max-width:17ch}
+.hero h1 .soft{color:var(--muted)}
+.hero__sub{margin-top:1.4rem;font-size:clamp(1.05rem,1.7vw,1.25rem);color:var(--muted);max-width:48ch}
+.hero__acts{margin-top:2.2rem;display:flex;flex-wrap:wrap;gap:.8rem;align-items:center}
+.hero__note{font-family:var(--mono);font-size:.75rem;color:var(--dim)}
+
+/* ---------- the sequence ---------- */
+.seq{margin-top:clamp(3rem,6vw,4.5rem);display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);background:var(--surface)}
+.seq__cell{padding:1.4rem 1.4rem 1.1rem;border-right:1px solid var(--line);position:relative}
+.seq__cell:last-child{border-right:none}
+.seq__art{aspect-ratio:4/3;width:100%}
+.seq__cap{font-family:var(--mono);font-size:.74rem;color:var(--muted);margin-top:1rem;line-height:1.5}
+.seq__cap b{display:block;color:var(--ink);font-weight:500;margin-bottom:.15rem}
+.seq__arrow{position:absolute;right:-9px;top:42%;width:18px;height:18px;background:var(--surface);border:1px solid var(--line);border-left:none;border-bottom:none;transform:rotate(45deg);z-index:2}
+@media (max-width:760px){
+  .seq{grid-template-columns:1fr}
+  .seq__cell{border-right:none;border-bottom:1px solid var(--line)}
+  .seq__cell:last-child{border-bottom:none}
+  .seq__arrow{display:none}
+}
+
+/* ---------- steps ---------- */
+.steps{margin-top:3rem;display:grid;gap:1px;background:var(--line);grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+.step{background:var(--bg-warm);padding:2rem 1.6rem}
+.step__n{font-family:var(--numeral);font-size:2.6rem;line-height:1;color:var(--red);display:block;margin-bottom:.6rem}
+.step h3{margin-bottom:.5rem}
+.step p{color:var(--muted);font-size:.95rem;margin:0}
+.step em{font-style:italic;color:var(--gold);font-family:var(--display)}
+
+/* ---------- no file ---------- */
+.nofile{border-left:3px solid var(--teal);padding-left:clamp(1.2rem,3vw,2.4rem);max-width:62ch}
+.nofile p{font-family:var(--display);font-size:clamp(1.3rem,2.6vw,1.85rem);line-height:1.4;color:var(--ink)}
+.nofile p:last-child{font-family:var(--body);font-size:1.02rem;color:var(--muted);margin-bottom:0}
+
+/* ---------- services ---------- */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+@media (max-width:860px){.svc{grid-template-columns:1fr}}
+.svc__item{border-top:1px solid var(--line);padding-top:1.4rem}
+.svc__item h3{margin-bottom:.6rem}
+.svc__item p{color:var(--muted);font-size:.95rem}
+.svc__item ul{margin:1rem 0 0;padding:0;list-style:none;font-family:var(--mono);font-size:.78rem;color:var(--dim);line-height:2}
+
+/* ---------- work ---------- */
+.case{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center;margin-top:2.5rem}
+@media (max-width:860px){.case{grid-template-columns:1fr}}
+.case h3{font-size:clamp(1.5rem,2.6vw,2rem);margin-bottom:1rem}
+.case p{color:var(--muted)}
+.case__facts{margin-top:1.6rem;border-top:1px solid var(--line)}
+.case__row{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.8rem}
+.case__row span:first-child{color:var(--dim)}
+.case__row span:last-child{color:var(--ink);text-align:right}
+
+.slot{background:var(--surface);border:1px dashed var(--line);aspect-ratio:4/3;display:flex;flex-direction:column;justify-content:flex-end;padding:1.1rem;gap:.3rem;position:relative;overflow:hidden}
+.slot::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(135deg,rgba(0,191,204,.04) 0%,transparent 42%,rgba(224,58,0,.03) 100%),
+  repeating-linear-gradient(-45deg,transparent,transparent 10px,rgba(43,38,33,.35) 10px,rgba(43,38,33,.35) 11px);
+  pointer-events:none}
+.slot__k,.slot__d{position:relative;z-index:1}
+.slot__k{font-family:var(--mono);font-size:.68rem;color:var(--teal);letter-spacing:.06em;text-transform:uppercase}
+.slot__d{font-family:var(--mono);font-size:.72rem;color:var(--dim);line-height:1.5}
+.slot__await{position:absolute;top:1.1rem;left:1.1rem;z-index:1;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--dim);opacity:.85}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
+@media (max-width:760px){.grid3{grid-template-columns:1fr}}
+
+/* ---------- why ---------- */
+.why{display:grid;grid-template-columns:repeat(2,1fr);gap:2.5rem 3rem;margin-top:3rem}
+@media (max-width:760px){.why{grid-template-columns:1fr;gap:2rem}}
+.why__item h3{font-size:1.2rem;margin-bottom:.5rem}
+.why__item h3 span{color:var(--teal)}
+.why__item p{color:var(--muted);font-size:.95rem;margin:0}
+
+/* ---------- quote ---------- */
+.quote{background:var(--bg-warm);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.quote__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,5vw,4rem)}
+@media (max-width:860px){.quote__grid{grid-template-columns:1fr}}
+.form{display:grid;gap:1.1rem}
+.field{display:grid;gap:.4rem}
+.field label{font-family:var(--mono);font-size:.74rem;color:var(--muted);letter-spacing:.04em}
+.field input,.field textarea{
+  background:var(--bg);border:1px solid var(--line);color:var(--ink);
+  font-family:var(--body);font-size:.95rem;padding:.7rem .85rem;border-radius:2px;width:100%;
+}
+.field textarea{min-height:110px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:#5c554c}
+.field input:focus,.field textarea:focus{border-color:var(--teal);outline:none}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+@media (max-width:560px){.row2{grid-template-columns:1fr}}
+.form__foot{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin-top:.4rem}
+.form__hint{font-family:var(--mono);font-size:.73rem;color:var(--dim);line-height:1.6;max-width:34ch}
+.stage{margin-top:1.8rem;border-left:2px solid var(--line);padding-left:1.2rem}
+.stage p{font-size:.95rem;color:var(--muted);margin-bottom:.9rem}
+.stage__now{color:var(--ink)!important}
+.stage__next{position:relative}
+.stage__link{font-family:var(--mono);font-size:.82rem;color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(0,191,204,.35);padding-bottom:2px}
+.stage__link:hover{border-bottom-color:var(--teal)}
+.contact-line{font-family:var(--mono);font-size:.85rem;color:var(--muted);margin-top:1.6rem;line-height:2}
+.contact-line a{color:var(--teal);text-decoration:none}
+.contact-line a:hover{text-decoration:underline}
+.etsy-soon{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.82rem;color:var(--dim);border:1px solid var(--line);padding:.2rem .55rem;border-radius:2px;cursor:default;user-select:none}
+.etsy-soon__badge{font-size:.65rem;letter-spacing:.08em;color:var(--gold);text-transform:uppercase}
+
+/* ---------- footer ---------- */
+.foot{padding-block:3rem;font-size:.88rem;color:var(--dim)}
+.foot__inner{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between;align-items:center}
+.foot a{color:var(--muted);text-decoration:none}
+.foot a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<div class="rule"></div>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="#top">
+      <img class="brand__mark" src="assets/poz_logo.png" width="38" height="38" alt="Planet Of Z 3D logo">
+      <span>
+        <span class="brand__name">Planet Of <em>Z 3D</em></span>
+        <span class="brand__tag">IDEAS PRINTED INTO REALITY</span>
+      </span>
+    </a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#make">What we make</a>
+      <a href="#work">Recent work</a>
+      <a href="photo-guide.html">Photo guide</a>
+    </nav>
+    <a class="btn btn--go" href="#quote">Send a photo</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero wrap">
+  <p class="hero__status"><span class="dot"></span> Now accepting custom orders</p>
+
+  <h1>Most people give up when they can’t find the part. <span class="soft">We’re who you call before that.</span></h1>
+
+  <p class="hero__sub">Send a photo of what broke. I design it, print it, and ship it to you. No file, no software, no technical knowledge on your end.</p>
+
+  <div class="hero__acts">
+    <a class="btn btn--go btn--lg" href="#quote">Send a photo</a>
+    <span class="hero__note">Free quote · usually same day</span>
+  </div>
+
+  <!-- The photo → CAD → part sequence. This is the whole business in one row. -->
+  <div class="seq">
+    <div class="seq__cell">
+      <svg class="seq__art" viewBox="0 0 200 150" role="img" aria-label="A blurry phone photo of a worn knob on a workbench">
+        <defs>
+          <filter id="blur"><feGaussianBlur stdDeviation="1.6"/></filter>
+          <linearGradient id="bench" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#241f1a"/><stop offset="1" stop-color="#15120f"/>
+          </linearGradient>
+        </defs>
+        <rect width="200" height="150" fill="url(#bench)"/>
+        <g filter="url(#blur)" opacity=".9">
+          <ellipse cx="100" cy="112" rx="42" ry="7" fill="#0c0a08" opacity=".8"/>
+          <rect x="82" y="62" width="36" height="42" rx="4" fill="#4a423a"/>
+          <rect x="76" y="56" width="48" height="10" rx="3" fill="#5a5148"/>
+          <rect x="93" y="104" width="14" height="14" fill="#3d372f"/>
+          <path d="M104 62l14 22-6 20" stroke="#15120f" stroke-width="2.5" fill="none"/>
+          <path d="M88 68l-4 30" stroke="#2e2823" stroke-width="1.5" fill="none"/>
+        </g>
+        <text x="12" y="140" font-family="DM Mono, monospace" font-size="7" fill="#7a7165">IMG_4417.HEIC</text>
+      </svg>
+      <p class="seq__cap"><b>What you send</b>Whatever your phone takes. Blurry is fine.</p>
+      <div class="seq__arrow"></div>
+    </div>
+
+    <div class="seq__cell">
+      <svg class="seq__art" viewBox="0 0 200 150" role="img" aria-label="A CAD model of the same knob with dimensions">
+        <rect width="200" height="150" fill="#0f1414"/>
+        <g stroke="#1e2c2c" stroke-width=".5">
+          <path d="M0 30h200M0 60h200M0 90h200M0 120h200M40 0v150M80 0v150M120 0v150M160 0v150"/>
+        </g>
+        <g stroke="#00bfcc" stroke-width="1.1" fill="none">
+          <rect x="82" y="58" width="36" height="46" rx="3"/>
+          <rect x="74" y="48" width="52" height="12" rx="2"/>
+          <rect x="93" y="104" width="14" height="20"/>
+          <path d="M93 110h14M93 116h14M93 122h14" stroke-width=".7"/>
+          <path d="M88 58v46M96 58v46M104 58v46M112 58v46" stroke-width=".5" opacity=".6"/>
+          <ellipse cx="100" cy="48" rx="26" ry="5"/>
+        </g>
+        <g stroke="#d4a030" stroke-width=".7" fill="none">
+          <path d="M74 38h52M74 35v6M126 35v6"/>
+          <path d="M140 48v76M137 48h6M137 124h6"/>
+        </g>
+        <text x="88" y="32" font-family="DM Mono, monospace" font-size="7" fill="#d4a030">1.812"</text>
+        <text x="146" y="88" font-family="DM Mono, monospace" font-size="7" fill="#d4a030">2.640"</text>
+      </svg>
+      <p class="seq__cap"><b>What I build</b>Measured, modeled, toleranced to fit.</p>
+      <div class="seq__arrow"></div>
+    </div>
+
+    <div class="seq__cell">
+      <svg class="seq__art" viewBox="0 0 200 150" role="img" aria-label="The finished printed part">
+        <defs>
+          <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#1c1917"/><stop offset=".35" stop-color="#4d443a"/>
+            <stop offset=".62" stop-color="#6b5f50"/><stop offset="1" stop-color="#241f1a"/>
+          </linearGradient>
+          <linearGradient id="cap" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#3b342c"/><stop offset=".5" stop-color="#7d7061"/><stop offset="1" stop-color="#2a251f"/>
+          </linearGradient>
+        </defs>
+        <rect width="200" height="150" fill="#141210"/>
+        <ellipse cx="100" cy="126" rx="44" ry="6" fill="#0a0908"/>
+        <rect x="93" y="100" width="14" height="24" fill="#332d26"/>
+        <path d="M93 106h14M93 112h14M93 118h14" stroke="#1c1815" stroke-width="1.4"/>
+        <rect x="82" y="58" width="36" height="44" rx="3" fill="url(#body)"/>
+        <g stroke="#2b241d" stroke-width=".8" opacity=".8">
+          <path d="M87 60v40M92 60v40M97 60v40M102 60v40M107 60v40M112 60v40"/>
+        </g>
+        <rect x="74" y="47" width="52" height="13" rx="3" fill="url(#cap)"/>
+        <ellipse cx="100" cy="47" rx="26" ry="5" fill="#8a7c6b"/>
+        <ellipse cx="100" cy="47" rx="26" ry="5" fill="none" stroke="#a99883" stroke-width=".6"/>
+        <path d="M78 52a24 5 0 0 0 44 0" stroke="#d4a030" stroke-width=".6" fill="none" opacity=".5"/>
+      </svg>
+      <p class="seq__cap"><b>What shows up</b>The part you were told doesn’t exist.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="band band--warm" id="how">
+  <div class="wrap">
+    <h2>Three steps, and two of them are mine</h2>
+    <p class="lede">One photo gets you a price. Only then do I ask you for anything else.</p>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step__n">1</span>
+        <h3>Send one photo</h3>
+        <p>Text it, email it, or use the form below. <em>Even a blurry one — I’ve worked with worse.</em> I’ll tell you if it’s makeable and what it costs, usually the same day.</p>
+      </div>
+      <div class="step">
+        <span class="step__n">2</span>
+        <h3>Then we get it right</h3>
+        <p>If you want to move forward, I send you a ten-minute shot list — or you mail me the part and I skip straight to measuring. <em>Your call.</em></p>
+      </div>
+      <div class="step">
+        <span class="step__n">3</span>
+        <h3>It arrives at your door</h3>
+        <p>Usually 3 to 7 days after that. <em>If it doesn’t fit, I fix it and reprint.</em> No charge for my mistakes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ YOU DON'T NEED A FILE ============ -->
+<section class="band">
+  <div class="wrap">
+    <div class="nofile">
+      <p>Most of my customers had never thought about 3D printing before they found me. They just had a broken thing and a dead end.</p>
+      <p>Every big printing service on the internet asks you to upload a finished 3D file. Almost nobody has one. What people actually have is a cracked knob in a drawer and a phone in their pocket. That’s all I need from you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT WE MAKE ============ -->
+<section class="band band--warm" id="make">
+  <div class="wrap">
+    <h2>What I make</h2>
+    <p class="lede">If it’s small, plastic, and nobody sells it anymore, it’s probably in my lane.</p>
+
+    <div class="svc">
+      <article class="svc__item">
+        <h3>Replacement parts</h3>
+        <p>The one broken piece keeping a $400 appliance in the garage. Discontinued, backordered, or never sold separately in the first place.</p>
+        <ul>
+          <li>Vacuum and blender housings</li>
+          <li>Espresso machine handles</li>
+          <li>Vintage stereo knobs and feet</li>
+          <li>Latches, clips, brackets, gears</li>
+        </ul>
+      </article>
+      <article class="svc__item">
+        <h3>Classic car replicas</h3>
+        <p>Period-correct interior and trim pieces for cars built before the parts catalog existed. Aftermarket generics look wrong. Originals cost $100 and up, when you can find one.</p>
+        <ul>
+          <li>Knobs, escutcheons, bezels</li>
+          <li>Interior trim and clips</li>
+          <li>Small batch runs for clubs</li>
+          <li>Matched to your original finish</li>
+        </ul>
+      </article>
+      <article class="svc__item">
+        <h3>Custom builds</h3>
+        <p>Something that doesn’t exist yet. Enclosures, mounts, brackets, jigs — designed around your actual hardware, not a guess.</p>
+        <ul>
+          <li>Electronics enclosures</li>
+          <li>Mounts and adapters</li>
+          <li>Shop fixtures and jigs</li>
+          <li>Prototype parts for founders</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECENT WORK ============ -->
+<section class="band" id="work">
+  <div class="wrap">
+    <h2>Recent work</h2>
+
+    <div class="case">
+      <div>
+        <h3>A knob that hadn’t been made in 100 years</h3>
+        <p>Jaime was restoring a 1920 Chevy and needed the reverse light knob. Not reproduced, not reproduced well, and the one original he found cost him $130. He sent a photo of that original from his phone.</p>
+        <p>I modeled it from the photo and his caliper measurements, then ran a batch of ten so the rest of his club could stop hunting for theirs.</p>
+        <div class="case__facts">
+          <div class="case__row"><span>Part</span><span>Reverse light knob, 1920 Chevrolet</span></div>
+          <div class="case__row"><span>Started from</span><span>One phone photo</span></div>
+          <div class="case__row"><span>Made</span><span>10 units, matched finish</span></div>
+          <div class="case__row"><span>Original NOS price</span><span>$130 each</span></div>
+        </div>
+      </div>
+      <!-- SWAP: "Classic Car Context Shot" — finished knob installed in Jaime's car -->
+      <div class="slot" aria-label="Photo placeholder">
+        <span class="slot__await">AWAITING PHOTO</span>
+        <span class="slot__k">PHOTO SLOT — 4:3</span>
+        <span class="slot__d">Finished knob installed in the actual car. Warm light, real dash, no studio.</span>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <!-- SWAP: the three "Dead End To Solution" shots -->
+      <div class="slot" aria-label="Photo placeholder">
+        <span class="slot__await">AWAITING PHOTO</span>
+        <span class="slot__k">SHOT A</span>
+        <span class="slot__d">The broken part alone on the bench. Unstaged. Let it look sad.</span>
+      </div>
+      <div class="slot" aria-label="Photo placeholder">
+        <span class="slot__await">AWAITING PHOTO</span>
+        <span class="slot__k">SHOT B</span>
+        <span class="slot__d">Same part next to a phone showing the “can you make this?” text.</span>
+      </div>
+      <div class="slot" aria-label="Photo placeholder">
+        <span class="slot__await">AWAITING PHOTO</span>
+        <span class="slot__k">SHOT C</span>
+        <span class="slot__d">Finished replica beside the original break, side by side.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="band band--warm" id="why">
+  <div class="wrap">
+    <h2>Why send it to me</h2>
+
+    <div class="why">
+      <div class="why__item">
+        <h3>A real engineer, <span>not a hobby printer</span></h3>
+        <p>CSWA-certified in SolidWorks, with a manufacturing background. That means parts designed to fit and hold, with tolerances that account for how plastic actually behaves — not a shape traced in a free browser tool.</p>
+      </div>
+      <div class="why__item">
+        <h3>You talk to <span>me</span></h3>
+        <p>No ticket system, no upload portal, no support queue. You text a photo and a person who knows the answer texts back. If your part is a bad candidate for printing, I’ll tell you that instead of taking the order.</p>
+      </div>
+      <div class="why__item">
+        <h3>No job is <span>too small</span></h3>
+        <p>One knob. One clip. One weird bracket for one specific machine. The big platforms can’t price that job and won’t take it. It’s the job I built the shop around.</p>
+      </div>
+      <div class="why__item">
+        <h3>Honest <span>timelines</span></h3>
+        <p>Most parts ship in 3 to 7 days. If yours is going to take longer — a tricky geometry, a finish that needs curing time — you hear that up front, before you pay.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE ============ -->
+<section class="quote" id="quote">
+  <div class="wrap band">
+    <div class="quote__grid">
+      <div>
+        <h2>Send a photo</h2>
+        <p class="lede">One photo, any quality. Tell me what broke and what it goes to, and I’ll come back with a price and a timeline. Free, and you’re not committed to anything.</p>
+
+        <div class="stage">
+          <p class="stage__now">Right now, one photo is all I need. It’s enough for me to tell you whether the part can be made and what it’ll cost.</p>
+          <p class="stage__next">Once you say go, I’ll send you a short shot list — about ten minutes with your phone — so the part I build actually fits. You can also just mail me the original and skip that entirely.</p>
+          <p><a class="stage__link" href="photo-guide.html">See the shot list before you commit →</a></p>
+        </div>
+
+        <p class="contact-line">
+          Email <a href="mailto:planetofz3d@gmail.com">planetofz3d@gmail.com</a><br>
+          Etsy <span class="etsy-soon" role="text" aria-label="Etsy shop coming soon">Planet Of Z 3D <span class="etsy-soon__badge">coming soon</span></span><br>
+          Based in La Habra, CA · ships nationwide
+        </p>
+      </div>
+
+      <div class="form">
+        <div class="row2">
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" type="text" placeholder="Jaime G.">
+          </div>
+          <div class="field">
+            <label for="f-contact">Email or phone</label>
+            <input id="f-contact" type="text" placeholder="Where I should reply">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-item">What is it part of?</label>
+          <input id="f-item" type="text" placeholder="1972 Ford Bronco / KitchenAid mixer / Gaggia Classic">
+        </div>
+        <div class="field">
+          <label for="f-desc">What broke, or what do you need made?</label>
+          <textarea id="f-desc" placeholder="The knob on the dash snapped off. I still have both pieces. Nobody sells it and the one I found used is $120."></textarea>
+        </div>
+        <div class="form__foot">
+          <button class="btn btn--go btn--lg" id="send" type="button">Open my email and attach the photo</button>
+          <p class="form__hint">This fills out an email to me with your details. Attach the photo before you hit send.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <span>Planet Of Z 3D · Ideas printed into reality</span>
+    <span>
+      <a href="mailto:planetofz3d@gmail.com">planetofz3d@gmail.com</a> ·
+      <a href="#quote">Send a photo</a> ·
+      <a href="#how">How it works</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('send').addEventListener('click', function () {
+  var v = function (id) { return document.getElementById(id).value.trim(); };
+  var name = v('f-name'), contact = v('f-contact'), item = v('f-item'), desc = v('f-desc');
+
+  var subject = item ? 'Part request — ' + item : 'Part request';
+  var body =
+    'Name: ' + (name || '') + '\n' +
+    'Best contact: ' + (contact || '') + '\n' +
+    'Item: ' + (item || '') + '\n\n' +
+    'What I need:\n' + (desc || '') + '\n\n' +
+    '--- Attach your photo to this email before sending. Any angle, any quality. ---\n';
+
+  window.location.href = 'mailto:planetofz3d@gmail.com'
+    + '?subject=' + encodeURIComponent(subject)
+    + '&body=' + encodeURIComponent(body);
+});
+</script>
+</body>
+</html>
