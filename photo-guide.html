@@ -268,14 +268,37 @@ section{padding-block:clamp(2.4rem,5.2vw,3.6rem);border-top:1px solid var(--line
 .btn{
   display:inline-block;background:var(--teal);color:#06201f;font-weight:550;font-size:1rem;
   padding:.95rem 1.85rem;border-radius:var(--radius-pill);text-decoration:none;margin-top:1.1rem;
+  border:1px solid transparent;cursor:pointer;
+  appearance:none;-webkit-appearance:none;-moz-appearance:none;
+  font-family:inherit;line-height:1.25;text-align:center;
   box-shadow:0 0 0 1px rgba(0,191,204,.15),0 4px 16px rgba(0,191,204,.18);
   transition:background .2s ease,box-shadow .25s ease,transform .2s ease;
 }
+button.btn{font:inherit;font-weight:550;font-size:1rem;line-height:1.25;margin-top:1.1rem}
 .btn:hover{
   background:#31d4de;
   box-shadow:0 0 0 1px rgba(0,191,204,.35),0 8px 28px rgba(0,191,204,.35);
   transform:translateY(-1px);
 }
+.mail-fallback{
+  display:none;margin-top:.85rem;padding:.85rem 1rem;
+  border:1px solid rgba(0,191,204,.28);border-radius:8px;
+  background:rgba(0,191,204,.06);font-family:var(--mono);font-size:.74rem;
+  color:var(--muted);line-height:1.55;max-width:42ch;
+}
+.mail-fallback.is-on{display:block}
+.mail-fallback a{color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(0,191,204,.35)}
+.mail-fallback a:hover{border-bottom-color:var(--teal)}
+.mail-fallback code{color:var(--ink);font-family:inherit;font-size:inherit}
+.mail-fallback__row{margin-top:.45rem;display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
+.mail-fallback button{
+  appearance:none;-webkit-appearance:none;background:transparent;border:1px solid var(--line);
+  color:var(--teal);font-family:var(--mono);font-size:.7rem;padding:.28rem .65rem;
+  border-radius:999px;cursor:pointer;line-height:1.2;margin:0;
+}
+.mail-fallback button:hover{border-color:var(--teal);background:rgba(0,191,204,.08)}
+.mail-fallback__copied{color:var(--gold);font-size:.68rem}
+.mail-fallback__hint{margin:0 0 .15rem;color:var(--dim)}
 .foot{
   padding-block:2.8rem;font-family:var(--mono);font-size:.76rem;color:var(--dim);
   border-top:1px solid var(--line);
@@ -565,7 +588,17 @@ section{padding-block:clamp(2.4rem,5.2vw,3.6rem);border-top:1px solid var(--line
   <div class="wrap">
     <h2>Got your shots?</h2>
     <p class="intro">Send them over and I’ll come back with a price and a timeline, usually the same day.</p>
-    <a class="btn" href="mailto:planetofz3d@gmail.com?subject=Part%20photos">Email my photos</a>
+    <button class="btn" id="email-photos" type="button">Email my photos</button>
+    <p class="mail-fallback__hint" style="margin-top:.7rem;font-family:var(--mono);font-size:.73rem;color:var(--dim)">Opens an email to me — attach your photos before you hit send.</p>
+    <div class="mail-fallback" id="mail-fallback" hidden aria-live="polite">
+      <p style="margin:0">No mail app opened? Use Gmail, or copy the address:</p>
+      <div class="mail-fallback__row">
+        <a id="gmail-link" href="#" target="_blank" rel="noopener">Open in Gmail</a>
+        <code>planetofz3d@gmail.com</code>
+        <button type="button" id="copy-email">Copy address</button>
+        <span class="mail-fallback__copied" id="copy-done" hidden>Copied</span>
+      </div>
+    </div>
   </div>
 </section>
 </main>
@@ -573,6 +606,68 @@ section{padding-block:clamp(2.4rem,5.2vw,3.6rem);border-top:1px solid var(--line
 <footer class="foot">
   <div class="wrap">Planet Of Z 3D · Ideas printed into reality · planetofz3d@gmail.com</div>
 </footer>
+
+<script>
+(function () {
+  var TO = 'planetofz3d@gmail.com';
+  var sendBtn = document.getElementById('email-photos');
+  var fallback = document.getElementById('mail-fallback');
+  var gmailLink = document.getElementById('gmail-link');
+  var copyBtn = document.getElementById('copy-email');
+  var copyDone = document.getElementById('copy-done');
+  if (!sendBtn) return;
+
+  var subject = 'Part photos';
+  var body =
+    'Hi — attaching photos of the part.\n\n' +
+    'What it goes to (make / model / year if you know):\n\n' +
+    '--- Attach the original full-size photos before sending. ---\n';
+
+  function openMailto(mailtoUrl) {
+    var a = document.createElement('a');
+    a.href = mailtoUrl;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  function showFallback() {
+    var gmail =
+      'https://mail.google.com/mail/?view=cm&fs=1' +
+      '&to=' + encodeURIComponent(TO) +
+      '&su=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+    gmailLink.href = gmail;
+    fallback.hidden = false;
+    fallback.classList.add('is-on');
+  }
+
+  sendBtn.addEventListener('click', function () {
+    var mailto =
+      'mailto:' + TO +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+    openMailto(mailto);
+    // Always surface backup — mailto often fails silently with no client.
+    showFallback();
+  });
+
+  copyBtn.addEventListener('click', function () {
+    function done() {
+      copyDone.hidden = false;
+      window.setTimeout(function () { copyDone.hidden = true; }, 1600);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(TO).then(done).catch(function () {
+        window.prompt('Copy this email address:', TO);
+      });
+    } else {
+      window.prompt('Copy this email address:', TO);
+    }
+  });
+})();
+</script>
 
 <script>
 (function () {
